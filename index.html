@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="phonecatApp">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -30,13 +30,12 @@
   <script src="/node_modules/systemjs/dist/system.src.js"></script>
   <script src="/systemjs.config.js"></script>
   <script>
-    System.import('/app');
-
+    System.import('/app/main').then(null, console.error.bind(console));
   </script>
 </head>
 
 <body>
-
+  <!--<phonecat-app></phonecat-app>-->
   <div class="view-container">
     <div ng-view class="view-frame"></div>
   </div>
