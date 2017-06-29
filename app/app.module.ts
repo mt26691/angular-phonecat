@@ -11,27 +11,29 @@ import { FormsModule } from '@angular/forms';
 import { routeParamsProvider } from './ajs-upgraded-providers';
 import { PhoneDetailComponent } from './phone-detail/phone-detail.component';
 import { CheckmarkPipe } from './core/checkmark/checkmark.pipe';
-
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent }     from './app.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     UpgradeModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [
     Phone,
     routeParamsProvider
   ],
   declarations: [
+    AppComponent,
     PhoneListComponent,
     PhoneDetailComponent,
     CheckmarkPipe
   ],
-  entryComponents: [
-    PhoneListComponent,
-    PhoneDetailComponent]
+   bootstrap: [ AppComponent ]
+
 })
 export class AppModule {
   constructor(private upgrade: UpgradeModule) { }

@@ -13,7 +13,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@angular/upgrade/static", "@angular/core", "../core/phone/phone.service", "../ajs-upgraded-providers"], factory);
+        define(["require", "exports", "@angular/upgrade/static", "@angular/core", "../core/phone/phone.service", "@angular/router"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -21,13 +21,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     var static_1 = require("@angular/upgrade/static");
     var core_1 = require("@angular/core");
     var phone_service_1 = require("../core/phone/phone.service");
-    var ajs_upgraded_providers_1 = require("../ajs-upgraded-providers");
+    var router_1 = require("@angular/router");
     var PhoneDetailComponent = (function () {
-        function PhoneDetailComponent(routeParams, phone) {
+        function PhoneDetailComponent(activatedRoute, phone) {
             var _this = this;
-            phone.get(routeParams['phoneId']).subscribe(function (phone) {
-                _this.phone = phone;
-                _this.setImage(phone.images[0]);
+            phone.get(activatedRoute.snapshot.params['phoneId'])
+                .subscribe(function (p) {
+                _this.phone = p;
+                _this.setImage(p.images[0]);
             });
         }
         PhoneDetailComponent.prototype.setImage = function (imageUrl) {
@@ -38,7 +39,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
                 selector: 'phone-detail',
                 templateUrl: './phone-detail/phone-detail.template.html',
             }),
-            __metadata("design:paramtypes", [ajs_upgraded_providers_1.RouteParams, phone_service_1.Phone])
+            __metadata("design:paramtypes", [router_1.ActivatedRoute, phone_service_1.Phone])
         ], PhoneDetailComponent);
         return PhoneDetailComponent;
     }());

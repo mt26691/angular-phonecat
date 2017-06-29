@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
  
 import { Phone, PhoneData } from '../core/phone/phone.service';
 import { RouteParams } from '../ajs-upgraded-providers';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,11 +16,12 @@ export class PhoneDetailComponent {
   phone: PhoneData;
   mainImageUrl: string;
  
-  constructor(routeParams: RouteParams, phone: Phone) {
-    phone.get(routeParams['phoneId']).subscribe(phone => {
-      this.phone = phone;
-      this.setImage(phone.images[0]);
-    });
+  constructor(activatedRoute: ActivatedRoute, phone: Phone) {
+    phone.get(activatedRoute.snapshot.params['phoneId'])
+      .subscribe((p: PhoneData) => {
+        this.phone = p;
+        this.setImage(p.images[0]);
+      });
   }
  
   setImage(imageUrl: string) {
