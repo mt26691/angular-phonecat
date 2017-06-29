@@ -8,6 +8,10 @@ import 'rxjs/add/observable/throw';
 import { Phone } from './core/phone/phone.service';
 import { PhoneListComponent } from './phone-list/phone-list.component';
 import { FormsModule } from '@angular/forms';
+import { routeParamsProvider } from './ajs-upgraded-providers';
+import { PhoneDetailComponent } from './phone-detail/phone-detail.component';
+import { CheckmarkPipe } from './core/checkmark/checkmark.pipe';
+
 
 @NgModule({
   imports: [
@@ -17,13 +21,17 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    Phone
+    Phone,
+    routeParamsProvider
   ],
   declarations: [
     PhoneListComponent,
+    PhoneDetailComponent,
+    CheckmarkPipe
   ],
   entryComponents: [
-    PhoneListComponent]
+    PhoneListComponent,
+    PhoneDetailComponent]
 })
 export class AppModule {
   constructor(private upgrade: UpgradeModule) { }

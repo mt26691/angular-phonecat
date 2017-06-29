@@ -13,7 +13,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@angular/upgrade/static", "@angular/platform-browser", "@angular/core", "@angular/http", "rxjs/add/operator/toPromise", "rxjs/add/operator/map", "rxjs/add/observable/throw", "./core/phone/phone.service", "./phone-list/phone-list.component", "@angular/forms"], factory);
+        define(["require", "exports", "@angular/upgrade/static", "@angular/platform-browser", "@angular/core", "@angular/http", "rxjs/add/operator/toPromise", "rxjs/add/operator/map", "rxjs/add/observable/throw", "./core/phone/phone.service", "./phone-list/phone-list.component", "@angular/forms", "./ajs-upgraded-providers", "./phone-detail/phone-detail.component", "./core/checkmark/checkmark.pipe"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -28,6 +28,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     var phone_service_1 = require("./core/phone/phone.service");
     var phone_list_component_1 = require("./phone-list/phone-list.component");
     var forms_1 = require("@angular/forms");
+    var ajs_upgraded_providers_1 = require("./ajs-upgraded-providers");
+    var phone_detail_component_1 = require("./phone-detail/phone-detail.component");
+    var checkmark_pipe_1 = require("./core/checkmark/checkmark.pipe");
     var AppModule = (function () {
         function AppModule(upgrade) {
             this.upgrade = upgrade;
@@ -44,13 +47,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
                     forms_1.FormsModule
                 ],
                 providers: [
-                    phone_service_1.Phone
+                    phone_service_1.Phone,
+                    ajs_upgraded_providers_1.routeParamsProvider
                 ],
                 declarations: [
                     phone_list_component_1.PhoneListComponent,
+                    phone_detail_component_1.PhoneDetailComponent,
+                    checkmark_pipe_1.CheckmarkPipe
                 ],
                 entryComponents: [
-                    phone_list_component_1.PhoneListComponent
+                    phone_list_component_1.PhoneListComponent,
+                    phone_detail_component_1.PhoneDetailComponent
                 ]
             }),
             __metadata("design:paramtypes", [static_1.UpgradeModule])
