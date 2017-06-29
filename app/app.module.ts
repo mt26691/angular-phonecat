@@ -1,12 +1,29 @@
 import { UpgradeModule } from '@angular/upgrade/static';
-import { BrowserModule }  from '@angular/platform-browser';
-import { NgModule }       from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
+import { Phone } from './core/phone/phone.service';
+import { PhoneListComponent } from './phone-list/phone-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
     UpgradeModule,
+    HttpModule,
+    FormsModule
   ],
+  providers: [
+    Phone
+  ],
+  declarations: [
+    PhoneListComponent,
+  ],
+  entryComponents: [
+    PhoneListComponent]
 })
 export class AppModule {
   constructor(private upgrade: UpgradeModule) { }

@@ -1,8 +1,6 @@
 'use strict';
 describe('phoneList', function () {
-    // Load the module that contains the `phoneList` component before each test
     beforeEach(module('phoneList'));
-    // Test the controller
     describe('PhoneListController', function () {
         var $httpBackend, ctrl;
         beforeEach(inject(function ($componentController, _$httpBackend_) {

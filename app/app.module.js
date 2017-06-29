@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,26 +7,55 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var static_1 = require("@angular/upgrade/static");
-var platform_browser_1 = require("@angular/platform-browser");
-var core_1 = require("@angular/core");
-var AppModule = (function () {
-    function AppModule(upgrade) {
-        this.upgrade = upgrade;
+(function (factory) {
+    if (typeof module === "object" && typeof module.exports === "object") {
+        var v = factory(require, exports);
+        if (v !== undefined) module.exports = v;
     }
-    AppModule.prototype.ngDoBootstrap = function () {
-        this.upgrade.bootstrap(document.documentElement, ['phonecatApp']);
-    };
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                platform_browser_1.BrowserModule,
-                static_1.UpgradeModule,
-            ],
-        }),
-        __metadata("design:paramtypes", [static_1.UpgradeModule])
-    ], AppModule);
-    return AppModule;
-}());
-exports.AppModule = AppModule;
+    else if (typeof define === "function" && define.amd) {
+        define(["require", "exports", "@angular/upgrade/static", "@angular/platform-browser", "@angular/core", "@angular/http", "rxjs/add/operator/toPromise", "rxjs/add/operator/map", "rxjs/add/observable/throw", "./core/phone/phone.service", "./phone-list/phone-list.component", "@angular/forms"], factory);
+    }
+})(function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var static_1 = require("@angular/upgrade/static");
+    var platform_browser_1 = require("@angular/platform-browser");
+    var core_1 = require("@angular/core");
+    var http_1 = require("@angular/http");
+    require("rxjs/add/operator/toPromise");
+    require("rxjs/add/operator/map");
+    require("rxjs/add/observable/throw");
+    var phone_service_1 = require("./core/phone/phone.service");
+    var phone_list_component_1 = require("./phone-list/phone-list.component");
+    var forms_1 = require("@angular/forms");
+    var AppModule = (function () {
+        function AppModule(upgrade) {
+            this.upgrade = upgrade;
+        }
+        AppModule.prototype.ngDoBootstrap = function () {
+            this.upgrade.bootstrap(document.documentElement, ['phonecatApp']);
+        };
+        AppModule = __decorate([
+            core_1.NgModule({
+                imports: [
+                    platform_browser_1.BrowserModule,
+                    static_1.UpgradeModule,
+                    http_1.HttpModule,
+                    forms_1.FormsModule
+                ],
+                providers: [
+                    phone_service_1.Phone
+                ],
+                declarations: [
+                    phone_list_component_1.PhoneListComponent,
+                ],
+                entryComponents: [
+                    phone_list_component_1.PhoneListComponent
+                ]
+            }),
+            __metadata("design:paramtypes", [static_1.UpgradeModule])
+        ], AppModule);
+        return AppModule;
+    }());
+    exports.AppModule = AppModule;
+});
